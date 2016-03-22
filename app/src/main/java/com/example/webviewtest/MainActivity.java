@@ -8,8 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private WebView webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                loadPage();
             }
         });
+    }
+
+    private void loadPage() {
+        webview = (WebView) findViewById(R.id.webview);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.loadUrl("https://www.netflix.com");
     }
 
     @Override
